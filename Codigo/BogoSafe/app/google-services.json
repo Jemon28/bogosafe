@@ -15,13 +15,21 @@
       },
       "oauth_client": [
         {
+          "client_id": "697005005924-jffhkfug9ftfh0hbajr8a6vvjq8hah52.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.edu.unipanamericana.bogosafe",
+            "certificate_hash": "1be7969bbee6417244a8dc2a9a17efaa545618e4"
+          }
+        },
+        {
           "client_id": "697005005924-fdnr38dikvr89uhvj74snv33t9034jsg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDeBphdjiq59kMWsEV44rdK5mPBv65zUGI"
+          "current_key": "AIzaSyB5s15ewd07tT6-AXMAaCejFIVyLoer1bk"
         }
       ],
       "services": {

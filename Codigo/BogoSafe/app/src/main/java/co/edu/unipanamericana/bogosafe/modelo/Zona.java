@@ -12,7 +12,8 @@ public class Zona {
     private GeoPoint ubicacion;
     private Timestamp fecha;
 
-    public Zona() {}
+    public Zona() {
+    }
 
     public String getLocalidad() {
         return localidad;
@@ -42,7 +43,6 @@ public class Zona {
         return fecha;
     }
 
-
     public void setLocalidad(String localidad) {
         this.localidad = localidad;
     }
@@ -69,18 +69,5 @@ public class Zona {
 
     public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
-    }
-
-    @Override
-    public String toString() {
-        return "Zona{" +
-                "localidad='" + localidad + '\'' +
-                ", barrio='" + barrio + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", suceso='" + suceso + '\'' +
-                ", ubicacion=" + ubicacion +
-                ", fecha=" + fecha +
-                '}';
     }
 }
