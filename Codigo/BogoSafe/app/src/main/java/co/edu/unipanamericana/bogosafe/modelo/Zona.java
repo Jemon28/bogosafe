@@ -1,6 +1,7 @@
 package co.edu.unipanamericana.bogosafe.modelo;
 
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.GeoPoint;
 
 public class Zona {
@@ -11,6 +12,7 @@ public class Zona {
     private String suceso;
     private GeoPoint ubicacion;
     private Timestamp fecha;
+    private DocumentReference usuario;
 
     public Zona() {
     }
@@ -43,6 +45,10 @@ public class Zona {
         return fecha;
     }
 
+    public DocumentReference getUsuario() {
+        return usuario;
+    }
+
     public void setLocalidad(String localidad) {
         this.localidad = localidad;
     }
@@ -69,5 +75,9 @@ public class Zona {
 
     public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
+    }
+
+    public void setUsuario(DocumentReference usuario) {
+        this.usuario = usuario;
     }
 }

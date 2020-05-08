@@ -17,9 +17,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import co.edu.unipanamericana.bogosafe.modelo.Usuario;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -29,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button mButtomRegister;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference mDatabase;
+    private FirebaseFirestore db;
 
     private String name;
     private String email;
@@ -43,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        db = FirebaseFirestore.getInstance();
 
         mEditTextName = (EditText) findViewById(R.id.editTextMailLogin);
         mEditTextMail = (EditText) findViewById(R.id.editTextMail);
@@ -71,28 +74,20 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-
-
     private void createAccount(){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
-                            Map<String, Object> map = new HashMap<>();
-                            map.put("name",name);
-                            map.put("email",email);
-
+                            Usuario u = new Usuario(name, email);
                             String id = mAuth.getCurrentUser().getUid();
 
-                            mDatabase.child("Users").child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            db.collection("Usuarios").document(id).set(u).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task2) {
-                                    if(task2.isSuccessful()){
-                                        startActivity(new Intent(RegisterActivity.this, MapsActivity.class));
-                                        finish();
-                                    }
+                                    startActivity(new Intent(RegisterActivity.this, MapsActivity.class));
+                                    finish();
                                 }
                             });
 

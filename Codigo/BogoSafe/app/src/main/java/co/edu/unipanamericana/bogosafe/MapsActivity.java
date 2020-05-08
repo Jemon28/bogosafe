@@ -8,6 +8,8 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -38,6 +40,7 @@ public class MapsActivity  extends FragmentActivity implements OnMapReadyCallbac
     private LocationManager locationManager;
     private LatLng mDefaultLocation = new LatLng(4.6971966,-74.1361705);
     //private GoogleMap mMap;
+    private Button mbtnGPS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,19 @@ public class MapsActivity  extends FragmentActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
+        /*mbtnGPS = (floatinActionButton) findViewById(R.id.floatingActionButtonGPS);
+
+
+        mbtnGPS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });*/
+
     }
 
 
@@ -64,15 +80,12 @@ public class MapsActivity  extends FragmentActivity implements OnMapReadyCallbac
         mMap = googleMap;
         mMap.setOnInfoWindowClickListener(this);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
-        //mMap.animateCamera(CameraUpdateFactory.zoomTo(DEFAULT_ZOOM));
         mMap.getUiSettings().setMapToolbarEnabled(false);
         mMap.getUiSettings().setMyLocationButtonEnabled(false);
         mMap.setMyLocationEnabled(true);
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
     }
-
-
 
     @Override
     protected void onStart() {
@@ -84,6 +97,7 @@ public class MapsActivity  extends FragmentActivity implements OnMapReadyCallbac
                     for (DocumentSnapshot d: queryDocumentSnapshots.getDocuments()) {
                         Log.d("MapsListner", "Leyendo informacion continua " + d.getData().toString());
                         Zona z = d.toObject(Zona.class);
+                        Log.w(TAG, z.toString());
                         MarkerOptions m = new MarkerOptions();
                         m.position(new LatLng(z.getUbicacion().getLatitude(), z.getUbicacion().getLongitude()))
                                 .title(z.getSuceso())
