@@ -9,7 +9,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -23,6 +22,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -40,7 +40,7 @@ public class MapsActivity  extends FragmentActivity implements OnMapReadyCallbac
     private LocationManager locationManager;
     private LatLng mDefaultLocation = new LatLng(4.6971966,-74.1361705);
     //private GoogleMap mMap;
-    private Button mbtnGPS;
+    private FloatingActionButton mbtnGPS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,16 +52,16 @@ public class MapsActivity  extends FragmentActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
 
 
-        /*mbtnGPS = (floatinActionButton) findViewById(R.id.floatingActionButtonGPS);
+        mbtnGPS = (FloatingActionButton) findViewById(R.id.floatingActionButtonGPS);
+
 
 
         mbtnGPS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                Toast.makeText(MapsActivity.this, "lalala", Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
 
     }
 
@@ -114,8 +114,7 @@ public class MapsActivity  extends FragmentActivity implements OnMapReadyCallbac
     @Override
     public void onInfoWindowClick(Marker marker) {
         Zona z = (Zona) marker.getTag();
-        Toast.makeText(this, String.valueOf(z.getFecha().toDate()),
-        Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, String.valueOf(z.getFecha().toDate()), Toast.LENGTH_SHORT).show();
     }
 
     @Override
